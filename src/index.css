@@ -16,9 +16,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Background */
 .app {
-  /* background-image: url('./assets/cold-bg.jpg'); */
-  background-image: url('./assets/warm-bg.jpg');
+  background-image: url('./assets/cold-bg.jpg');
+  /* background-image: url('./assets/warm-bg.jpg'); */
   background-size: cover;
   background-position: bottom;
   transition: 0.4 ease;
@@ -36,49 +37,74 @@ main {
     rgba(0, 0, 0, 0.6),
     rgba(0, 0, 0, 0)
   );
-  padding: 25px;
+  padding: 15px;
+}
+
+/* Search Section */
+.search-box {
+  margin-top: 10px;
+}
+
+.search-box .search-bar::placeholder {
+  color: #f4f4f4;
 }
 
 .search-box .search-bar {
-  display: inline-block;
-  width: 77%;
-  padding: 14px;
-
   appearance: none;
   background: none;
   border: none;
   outline: none;
 
-  background-color: #f4f4f4c0;
-  border-radius: 10px;
-
-  box-shadow: 3px 5px rgba(0, 0, 0, 0.3);
-
-  color: #313131;
+  display: inline-block;
+  position: relative;
   font-size: 14px;
+  padding: 14px;
+  width: 77%;
 
-  transition: 0.3s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+
+  transition: 0.3s ease;
+}
+
+.search-box .search-bar:hover {
+  transform: scale(1.05, 1.05);
 }
 
 .search-box .search-bar:focus {
-  background-color: #f4f4f4ef;
+  color: #313131;
+  background-color: #dfdfdf;
+
+  transform: scale(1.05, 1.05);
+  transition: 0.2s ease-in-out;
 }
 
-.btn {
-  outline: none;
-  margin-left: 0.6rem;
-  font-size: 14px;
-  padding: 0.9rem 0.8rem;
-  color: #f4f4f4;
-  background-color: transparent;
-  text-decoration: none;
-  border: 1px solid rgba(146, 148, 248, 0.4);
-  position: relative;
+.search-box .search-bar:focus::placeholder {
+  color: #313131;
+}
+
+.search-box .btn {
   overflow: hidden;
+  border: none;
+  outline: none;
+
+  position: relative;
+  font-size: 14px;
+  margin-left: 1rem;
+  padding: 0.9rem 0.8rem;
+
+  color: #f4f4f4;
+  background-color: rgba(255, 255, 255, 0.15);
+
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+  text-decoration: none;
   transition: all ease 0.1s;
 }
 
-.btn:before {
+.search-box .btn:before,
+.search-box .search-bar:before {
   content: '';
   position: absolute;
   top: 0;
@@ -88,22 +114,92 @@ main {
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(146, 148, 248, 0.671),
+    rgba(255, 255, 255, 0.8),
     transparent
   );
   transition: all 500ms ease;
 }
 
-.btn:hover:before {
+.search-box .btn:hover:before,
+.search-box .search-bar:hover::before {
   left: 100%;
 }
 
-.btn:hover {
+.search-box .btn:hover {
   cursor: pointer;
-  background: rgba(146, 148, 248, 0.4);
-  transform: scale(1.1, 1.1);
+  transform: scale(1.08, 1.08);
 }
 
-.btn:active {
+.search-box .btn:active {
   transform: scale(1, 1);
+}
+
+/* Location Section */
+.location-box {
+  margin-top: 50px;
+}
+
+.location-box .location {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+
+.location-box .date {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+}
+
+/* Temperature Section */
+.location-box .location {
+  color: #f4f4f4;
+  font-size: 34px;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+
+.location-box .date {
+  color: #f4f4f4;
+  font-size: 19px;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+}
+
+.weather-box {
+  text-align: center;
+}
+
+.weather-box .temperature {
+  position: relative;
+  display: inline-block;
+  margin-top: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 13px;
+
+  padding: 40px;
+
+  color: #f4f4f4;
+  font-size: 60px;
+  font-weight: 900;
+
+  text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
+  text-align: center;
+  box-shadow: 5px 7px rgba(0, 0, 0, 0.2);
+}
+
+.weather-box .condition {
+  color: #f4f4f4;
+  font-size: 24px;
+  margin-top: 15px;
+  font-weight: 700;
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
