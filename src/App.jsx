@@ -5,7 +5,7 @@ const { REACT_APP_API_KEY: key, REACT_APP_API_BASE_URL: url } = process.env;
 
 const App = () => {
   // const [searchQuery, setSearchQuery] = useState('');
-  const [data, setData] = useState({});
+  const [mData, setMData] = useState(null);
   const [degree, setDegree] = useState('°C');
 
   useEffect(() => {
@@ -13,22 +13,22 @@ const App = () => {
       const response = await fetch(
         `${url}/data/2.5/weather?appid=${key}&q=Montreal`
       );
-      setData(await response.json());
+      setMData(await response.json());
     })();
   }, []);
 
-  let country = '';
-  let temp = '';
-  let description = '';
-  let name = '';
-  let sunset = '';
+  // let country = '';
+  // let temp = '';
+  // let description = '';
+  // let name = '';
+  // let sunset = '';
 
-  // const {
-  //   weather: [{ description = 'sunny' }],
-  //   main: { temp = 273, feels_like, temp_min, temp_max },
-  //   sys: { country = 'CA', sunset },
-  //   name,
-  // } = data;
+  const {
+    weather: [{ description } = {}] = [],
+    main: { temp, feels_like, temp_min, temp_max } = {},
+    sys: { country, sunset } = {},
+    name,
+  } = mData || {};
 
   const getWeatherCondition = () => {
     if (description?.includes('rain')) {
@@ -58,9 +58,9 @@ const App = () => {
   };
 
   return (
-    data && (
+    mData && (
       <>
-        {console.log(data)}
+        {console.log(mData)}
         <div className={'app ' + getWeatherCondition()}>
           <main>
             <div className='search-box'>
