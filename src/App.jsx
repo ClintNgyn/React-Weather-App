@@ -32,7 +32,8 @@ const days = [
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [data, setData] = useState({});
+  const [data, setData] = useState();
+  const [degree, setDegree] = useState('°C');
 
   useEffect(() => {
     (async () => {
@@ -55,9 +56,12 @@ const App = () => {
     return Math.round(1.8 * (kelvin - 273) + 32);
   };
 
+  const changeDegreeHandler = () => {
+    setDegree(degree === '°C' ? '°F' : '°C');
+  };
+
   return (
     <>
-      {console.log(data)}
       <div className='app'>
         <main>
           <div className='search-box'>
@@ -76,8 +80,10 @@ const App = () => {
           </div>
 
           <div className='weather-box'>
-            <div className='temperature'>
-              {toCelsius(273)}
+            <div className='temperature' onClick={changeDegreeHandler}>
+              {(degree === '°C'
+                ? toCelsius(data?.main?.feel_like)
+                : toFahrenheit(data?.main?.feel_like)) + degree}
 
               <div className='condition'>Cloudy</div>
             </div>

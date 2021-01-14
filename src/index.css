@@ -71,7 +71,7 @@ main {
   box-shadow: 3px 3px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
 
-  transition: 0.3s ease;
+  transition: 0.2s ease;
 }
 
 .search-box .search-bar:hover {
@@ -83,7 +83,7 @@ main {
   color: #313131;
   background-color: #dfdfdf;
 
-  transform: scale(1.05, 1.05);
+  transform: scale(1.04, 1.04);
   transition: 0.2s ease-in-out;
 }
 
@@ -183,6 +183,7 @@ main {
 
 .weather-box {
   text-align: center;
+  user-select: none;
 }
 
 .weather-box .temperature {
@@ -201,6 +202,13 @@ main {
   text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
   text-align: center;
   box-shadow: 5px 7px rgba(0, 0, 0, 0.2);
+
+  transition: all ease 0.2s;
+}
+
+.weather-box .temperature:hover {
+  cursor: pointer;
+  transform: scale(1.09, 1.09);
 }
 
 .weather-box .condition {
