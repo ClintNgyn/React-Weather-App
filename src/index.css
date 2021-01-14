@@ -9,6 +9,9 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+
+  background: #313131;
+
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -22,6 +25,7 @@ body {
   /* background-image: url('./assets/warm-bg.jpg'); */
   background-size: cover;
   background-position: bottom;
+
   transition: 0.4 ease;
 }
 
@@ -31,13 +35,14 @@ body {
 
 main {
   min-height: 100vh;
-  width: 410px;
+  width: 400px;
+
   background-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.6),
     rgba(0, 0, 0, 0)
   );
-  padding: 15px;
+  padding: 10px;
 }
 
 /* Search Section */
@@ -61,6 +66,7 @@ main {
   padding: 14px;
   width: 77%;
 
+  color: #f4f4f4;
   background-color: rgba(255, 255, 255, 0.15);
   box-shadow: 3px 3px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -69,7 +75,8 @@ main {
 }
 
 .search-box .search-bar:hover {
-  transform: scale(1.05, 1.05);
+  cursor: pointer;
+  transform: scale(1.04, 1.04);
 }
 
 .search-box .search-bar:focus {
