@@ -5,7 +5,7 @@ const { REACT_APP_API_KEY: key, REACT_APP_API_BASE_URL: url } = process.env;
 
 const App = () => {
   // const [searchQuery, setSearchQuery] = useState('');
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
   const [degree, setDegree] = useState('°C');
 
   useEffect(() => {
@@ -17,21 +17,27 @@ const App = () => {
     })();
   }, []);
 
-  const getWeatherCondition = () => {
-    const {
-      weather: [{ description }],
-      sys: { sunset },
-      dt,
-    } = data;
+  let country = '';
+  let temp = '';
+  let description = '';
+  let name = '';
+  let sunset = '';
 
-    if (description.includes('rain')) {
+  // const {
+  //   weather: [{ description = 'sunny' }],
+  //   main: { temp = 273, feels_like, temp_min, temp_max },
+  //   sys: { country = 'CA', sunset },
+  //   name,
+  // } = data;
+
+  const getWeatherCondition = () => {
+    if (description?.includes('rain')) {
       return 'rain';
     }
-
-    if (dt + 3600 >= sunset) {
+    if (Date.now() + 3600 >= sunset) {
+      // console.log(Date().getTime(), sunset);
       return 'night';
     }
-
     return '';
   };
 
@@ -52,43 +58,41 @@ const App = () => {
   };
 
   return (
-    <>
-      <div
-        className={
-          typeof data === 'undefined' ? '' : 'app' + getWeatherCondition()
-        }
-      >
-        <main>
-          <div className='search-box'>
-            <input
-              type='text'
-              className='search-bar'
-              placeholder='Enter City'
-            />
+    data && (
+      <>
+        {console.log(data)}
+        <div className={'app ' + getWeatherCondition()}>
+          <main>
+            <div className='search-box'>
+              <input
+                type='text'
+                className='search-bar'
+                placeholder='Enter City'
+              />
 
-            <button className='btn'>Search</button>
-          </div>
-
-          <div className='location-box'>
-            <div className='location'>
-              {data?.name}, {data?.sys?.country}
+              <button className='btn'>Search</button>
             </div>
 
-            <div className='date'>{dateBuilder()}</div>
-          </div>
+            <div className='location-box'>
+              <div className='location'>
+                {name}, {country}
+              </div>
 
-          <div className='weather-box'>
-            <div className='temperature' onClick={changeDegreeHandler}>
-              {(degree === '°C'
-                ? toCelsius(data?.main?.temp)
-                : toFahrenheit(data?.main?.temp)) + degree}
-
-              <div className='condition'>{data?.weather[0]?.description}</div>
+              <div className='date'>{dateBuilder()}</div>
             </div>
-          </div>
-        </main>
-      </div>
-    </>
+
+            <div className='weather-box'>
+              <div className='temperature' onClick={changeDegreeHandler}>
+                {(degree === '°C' ? toCelsius(temp) : toFahrenheit(temp)) +
+                  degree}
+
+                <div className='description'>{description}</div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </>
+    )
   );
 };
 

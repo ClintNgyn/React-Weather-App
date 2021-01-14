@@ -22,7 +22,6 @@ body {
 /* Background */
 .app {
   background-image: url('./assets/morning.jpg');
-  /* background-image: url('./assets/night.jpg'); */
   background-size: cover;
   background-position: bottom;
 
@@ -35,6 +34,10 @@ body {
 
 .app.rain {
   background-image: url('./assets/rain.jpg');
+}
+
+.app.cold {
+  background-image: url('./assets/cold.jpg');
 }
 
 main {
@@ -215,7 +218,7 @@ main {
   transform: scale(1.09, 1.09);
 }
 
-.weather-box .condition {
+.weather-box .description {
   color: #f4f4f4;
   font-size: 24px;
   margin-top: 15px;
