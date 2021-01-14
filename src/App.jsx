@@ -1,11 +1,34 @@
 import { useEffect, useState } from 'react';
+import moment from 'moment';
 
-const {
-  REACT_APP_API_KEY: key,
-  REACT_APP_BASE_URL: url,
-  REACT_APP_MONTHS: months,
-  REACT_APP_DAYS: days,
-} = process.env;
+const { REACT_APP_API_KEY: key } = process.env;
+
+const url = 'https://api.openweathermap.org/data/2.5/weather';
+
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  ' July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+const days = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -13,14 +36,23 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(`${url}?appid=${key}&q=Montreal`);
-      setData(await response.json());
+      // const response = await fetch(`${url}?appid=${key}&q=Montreal`);
+      // setData(await response.json());
     })();
   }, []);
 
   const dateBuilder = () => {
-    const d = new Date();
-    return `${d.getDay()}, ${d.getMonth()} ${d.getDate()}, ${d.getFullYear()}`;
+    return moment(Date.now()).format('dddd, MMMM Do, YYYY');
+  };
+
+  const toCelsius = (kelvin) => {
+    // C = K - 273
+    return Math.round(kelvin - 273);
+  };
+
+  const toFahrenheit = (kelvin) => {
+    // F = 1.8(K - 273) + 32
+    return Math.round(1.8 * (kelvin - 273) + 32);
   };
 
   return (
@@ -34,6 +66,7 @@ const App = () => {
               className='search-bar'
               placeholder='Enter City'
             />
+
             <button className='btn'>Search</button>
           </div>
 
@@ -44,7 +77,8 @@ const App = () => {
 
           <div className='weather-box'>
             <div className='temperature'>
-              35°F
+              {toCelsius(273)}
+
               <div className='condition'>Cloudy</div>
             </div>
           </div>
