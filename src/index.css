@@ -21,16 +21,20 @@ body {
 
 /* Background */
 .app {
-  background-image: url('./assets/cold-bg.jpg');
-  /* background-image: url('./assets/warm-bg.jpg'); */
+  background-image: url('./assets/morning.jpg');
+  /* background-image: url('./assets/night.jpg'); */
   background-size: cover;
   background-position: bottom;
 
-  transition: 0.4 ease;
+  transition: 0.4s ease;
 }
 
-.app.warm {
-  background-image: url('./assets/warm-bg.jpg');
+.app.night {
+  background-image: url('./assets/night.jpg');
+}
+
+.app.rain {
+  background-image: url('./assets/rain.jpg');
 }
 
 main {
@@ -84,7 +88,7 @@ main {
   background-color: #dfdfdf;
 
   transform: scale(1.04, 1.04);
-  transition: 0.2s ease-in-out;
+  transition: 0.4s ease-in-out;
 }
 
 .search-box .search-bar:focus::placeholder {
