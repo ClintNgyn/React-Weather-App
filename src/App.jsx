@@ -25,7 +25,7 @@ const App = () => {
 
   const {
     weather: [{ description } = {}] = [],
-    main: { temp, feels_like, temp_min, temp_max } = {},
+    main: { temp, feels_like } = {},
     sys: { country, sunset } = {},
     name,
   } = mData || {};
@@ -86,6 +86,13 @@ const App = () => {
                 {(degree === '°C' ? toCelsius(temp) : toFahrenheit(temp)) +
                   degree}
 
+                <div className='feels'>
+                  Feels like{' '}
+                  {degree === '°C'
+                    ? toCelsius(feels_like)
+                    : toFahrenheit(feels_like)}
+                  °
+                </div>
                 <div className='description'>{description}</div>
               </div>
             </div>
