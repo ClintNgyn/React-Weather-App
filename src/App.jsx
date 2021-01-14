@@ -11,17 +11,11 @@ const App = () => {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        `${url}/data/2.5/weather?appid=${key}&q=Montreal`
+        `${url}/data/2.5/weather?appid=${key}&q=California`
       );
       setMData(await response.json());
     })();
   }, []);
-
-  // let country = '';
-  // let temp = '';
-  // let description = '';
-  // let name = '';
-  // let sunset = '';
 
   const {
     weather: [{ description } = {}] = [],
@@ -31,13 +25,22 @@ const App = () => {
   } = mData || {};
 
   const getWeatherCondition = () => {
-    if (description?.includes('rain')) {
+    if (description.includes('rain') || description.includes('thunderstorm')) {
       return 'rain';
     }
-    if (Date.now() + 3600 >= sunset) {
-      // console.log(Date().getTime(), sunset);
+
+    if (Math.floor(new Date().getTime() / 1000.0) >= sunset + 3600) {
       return 'night';
     }
+
+    if (description.includes('mist') || description.includes('cloud')) {
+      return 'cloudy';
+    }
+
+    if (temp <= 273) {
+      return 'cold';
+    }
+
     return '';
   };
 
@@ -60,7 +63,6 @@ const App = () => {
   return (
     mData && (
       <>
-        {console.log(mData)}
         <div className={'app ' + getWeatherCondition()}>
           <main>
             <div className='search-box'>

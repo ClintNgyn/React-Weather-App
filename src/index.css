@@ -40,6 +40,10 @@ body {
   background-image: url('./assets/cold.jpg');
 }
 
+.app.cloudy {
+  background-image: url('./assets/cloudy.jpg');
+}
+
 main {
   min-height: 100vh;
   width: 400px;
@@ -204,7 +208,7 @@ main {
   padding: 30px 35px;
 
   color: #f4f4f4;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.253);
   border-radius: 10px;
 
   text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
@@ -227,7 +231,7 @@ main {
 
   margin-top: 2px;
 
-  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
 }
 
 .weather-box .description {
@@ -238,5 +242,5 @@ main {
   margin-top: 40px;
 
   text-transform: capitalize;
-  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
 }
