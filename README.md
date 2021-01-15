@@ -6,9 +6,7 @@
 
 2. Go to App.jsx and in line 5, replace **${process.env.REACT_APP_API_KEY}** with your api key.
 
-3. run npm install command in terminal
-
-4. run npm start command in terminal
+3. run <i>npm install && npm start</i> in terminal
 
 <br>
 
