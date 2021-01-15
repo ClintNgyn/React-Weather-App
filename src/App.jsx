@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react';
 import moment from 'moment';
+import axios from 'axios';
 
 const { REACT_APP_API_URL: url } = process.env;
 
-// TODO: Search Query
 // TODO: Geolocation
 
 const App = () => {
-  // const [searchQuery, setSearchQuery] = useState('');
-  const [mData, setMData] = useState(null);
+  const [mData, setMData] = useState({});
+  const [searchQuery, setSearchQuery] = useState('Montreal');
   const [degree, setDegree] = useState('°C');
 
+  const fetchData = async () => {
+    const { data } = await axios.get(`${url}&q=${searchQuery}`);
+    setMData(data);
+  };
+
   useEffect(() => {
-    (async () => {
-      const response = await fetch(`${url}&q=Montreal`);
-      setMData(await response.json());
-    })();
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const {
@@ -26,7 +29,10 @@ const App = () => {
   } = mData || {};
 
   const getWeatherCondition = () => {
-    if (description.includes('rain') || description.includes('thunderstorm')) {
+    if (
+      description?.includes('rain') ||
+      description?.includes('thunderstorm')
+    ) {
       return 'rain';
     }
 
@@ -34,7 +40,7 @@ const App = () => {
       return 'night';
     }
 
-    if (description.includes('mist') || description.includes('cloud')) {
+    if (description?.includes('mist') || description?.includes('cloud')) {
       return 'cloudy';
     }
 
@@ -57,8 +63,12 @@ const App = () => {
     return Math.round(1.8 * (kelvin - 273) + 32);
   };
 
-  const changeDegreeHandler = () => {
+  const changeDegreeOnClickHandler = () => {
     setDegree(degree === '°C' ? '°F' : '°C');
+  };
+
+  const searchBtnOnClickHandler = () => {
+    fetchData();
   };
 
   return (
@@ -71,9 +81,14 @@ const App = () => {
                 type='text'
                 className='search-bar'
                 placeholder='Enter City'
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                }}
               />
 
-              <button className='btn'>Search</button>
+              <button className='btn' onClick={searchBtnOnClickHandler}>
+                Search
+              </button>
             </div>
 
             <div className='location-box'>
@@ -85,7 +100,7 @@ const App = () => {
             </div>
 
             <div className='weather-box'>
-              <div className='temperature' onClick={changeDegreeHandler}>
+              <div className='temperature' onClick={changeDegreeOnClickHandler}>
                 {(degree === '°C' ? toCelsius(temp) : toFahrenheit(temp)) +
                   degree}
 
