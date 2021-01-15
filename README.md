@@ -2,7 +2,7 @@
 
 ### How to Run
 
-1. Go to <a target='_blank'/>https://api.openweathermap.org/'<a> and get your api key.
+1. Go to <a href='https://api.openweathermap.org/' target='_blank'/>https://api.openweathermap.org/<a> and get your api key.
 
 2. Go to App.jsx and in line 5, replace **${process.env.REACT_APP_API_KEY}** with your api key.
 
