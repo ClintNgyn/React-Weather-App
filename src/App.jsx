@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 
-const { REACT_APP_API_KEY: key, REACT_APP_API_BASE_URL: url } = process.env;
+const { REACT_APP_API_URL: url } = process.env;
+
+// TODO: Search Query
+// TODO: Geolocation
 
 const App = () => {
   // const [searchQuery, setSearchQuery] = useState('');
@@ -10,9 +13,7 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(
-        `${url}/data/2.5/weather?appid=${key}&q=California`
-      );
+      const response = await fetch(`${url}&q=Montreal`);
       setMData(await response.json());
     })();
   }, []);
@@ -63,7 +64,8 @@ const App = () => {
   return (
     mData && (
       <>
-        <div className={'app ' + getWeatherCondition()}>
+        {/* <div className={'app ' + getWeatherCondition()}> */}
+        <div className='app cloudy'>
           <main>
             <div className='search-box'>
               <input
@@ -95,6 +97,7 @@ const App = () => {
                     : toFahrenheit(feels_like)}
                   °
                 </div>
+
                 <div className='description'>{description}</div>
               </div>
             </div>

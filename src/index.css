@@ -208,7 +208,7 @@ main {
   padding: 30px 35px;
 
   color: #f4f4f4;
-  background-color: rgba(255, 255, 255, 0.253);
+  background-color: rgba(255, 255, 255, 0.185);
   border-radius: 10px;
 
   text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
@@ -225,7 +225,7 @@ main {
 
 .weather-box .feels {
   color: #f4f4f4;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 300;
   font-style: italic;
 
