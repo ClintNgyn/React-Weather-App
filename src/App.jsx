@@ -4,21 +4,41 @@ import axios from 'axios';
 
 const { REACT_APP_API_URL: url } = process.env;
 
-// TODO: Geolocation
-
 const App = () => {
   const [mData, setMData] = useState({});
-  const [searchQuery, setSearchQuery] = useState('Montreal');
+  const [searchQuery, setSearchQuery] = useState('London');
   const [degree, setDegree] = useState('°C');
 
-  const fetchData = async () => {
-    const { data } = await axios.get(`${url}&q=${searchQuery}`);
-    setMData(data);
+  const getGeoLocation = () => {
+    return new Promise((accept) => {
+      navigator.geolocation.getCurrentPosition(accept);
+    });
+  };
+
+  const fetchData = async (query) => {
+    let fullUrl = url;
+
+    if ('geolocation' in navigator && query === undefined) {
+      const {
+        coords: { latitude, longitude },
+      } = await getGeoLocation();
+
+      fullUrl += `&lat=${latitude}&lon=${longitude}`;
+    } else {
+      fullUrl += `&q=${searchQuery}`;
+    }
+
+    try {
+      const { data } = await axios.get(fullUrl);
+      setMData(data);
+    } catch (err) {
+      alert('City does not exist');
+    }
   };
 
   useEffect(() => {
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    //eslint-disable-next-line
   }, []);
 
   const {
@@ -68,7 +88,7 @@ const App = () => {
   };
 
   const searchBtnOnClickHandler = () => {
-    fetchData();
+    fetchData(searchQuery);
   };
 
   return (
