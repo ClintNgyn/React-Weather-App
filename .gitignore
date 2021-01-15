@@ -6,6 +6,9 @@
 # eslint cache
 .eslintcache
 
+# debug.log
+debug.log
+
 # dependencies
 /node_modules
 /.pnp
