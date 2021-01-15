@@ -64,8 +64,7 @@ const App = () => {
   return (
     mData && (
       <>
-        {/* <div className={'app ' + getWeatherCondition()}> */}
-        <div className='app cloudy'>
+        <div className={'app ' + getWeatherCondition()}>
           <main>
             <div className='search-box'>
               <input
