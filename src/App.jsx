@@ -34,6 +34,8 @@ const App = () => {
     } catch (err) {
       alert('City does not exist');
     }
+
+    setSearchQuery('');
   };
 
   useEffect(() => {
@@ -88,7 +90,7 @@ const App = () => {
   };
 
   const searchBtnOnClickHandler = () => {
-    fetchData(searchQuery);
+    searchQuery !== '' && fetchData(searchQuery);
   };
 
   return (
@@ -101,6 +103,7 @@ const App = () => {
                 type='text'
                 className='search-bar'
                 placeholder='Enter City'
+                value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
                 }}
