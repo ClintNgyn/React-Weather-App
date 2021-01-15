@@ -2,13 +2,13 @@
 
 ### How to Run
 
-1. Go to <a>https://api.openweathermap.org/</a>, create an account and get your api key.
+1. Go to <a>https://api.openweathermap.org/</a> and get your api key.
 
-2. Create a .env file with REACT_APP_API_URL=https://api.openweathermap.org/data/2.5/weather?appid={api_key} (replace api_key with your actually api key)
+2. Go to App.jsx and in line 5, replace **${process.env.REACT_APP_API_KEY}** with your api key.
 
-3. npm install
+3. run npm install command in terminal
 
-4. npm start
+4. run npm start command in terminal
 
 <br>
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import moment from 'moment';
 import axios from 'axios';
 
-const { REACT_APP_API_URL: url } = process.env;
+const url = `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.REACT_APP_API_KEY}`;
 
 const App = () => {
   const [mData, setMData] = useState({});
