@@ -40,7 +40,6 @@ const App = () => {
 
   useEffect(() => {
     fetchData();
-    //eslint-disable-next-line
   }, []);
 
   const {
